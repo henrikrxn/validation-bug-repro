@@ -24,16 +24,12 @@ public class UnitTest1
 
         // Assert
         Assert.False(isValid);
-        /*
-        isValid.ShouldBeFalse();
-        validationResults.ShouldHaveSingleItem();
-        ValidationResult failure = validationResults.First();
-        failure.ErrorMessage.ShouldNotBeNull();
-        failure.ErrorMessage.ShouldContain(relativeUri);
-        failure.ErrorMessage.ShouldContain("cannot be parsed as an absolute Uri");
-        failure.MemberNames.ShouldHaveSingleItem();
-        failure.MemberNames.First().ShouldBe(nameof(input.AllowedOrigins));
-        */
+        ValidationResult failure = Assert.Single(validationResults);
+        Assert.NotNull(failure.ErrorMessage);
+        Assert.Contains(relativeUri, failure.ErrorMessage);
+        Assert.Contains("cannot be parsed as an absolute Uri", failure.ErrorMessage);
+        string memberName = Assert.Single(failure.MemberNames);
+        Assert.Equal(nameof(input.AllowedOrigins), memberName);
     }
     
     public class CorsConfiguration : IValidatableObject
