@@ -1,5 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
+[assembly: CaptureConsole]
+[assembly: CaptureTrace]
+
 namespace validation_bug_repro;
 
 public class UnitTest1

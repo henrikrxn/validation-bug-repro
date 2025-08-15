@@ -36,9 +36,3 @@ jobs:
         run: dotnet build --no-restore --check
       - name: Test
         run: dotnet test --no-build --verbosity normal --logger "console;verbosity=detailed"
-      - name: Upload a build artifact
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: my-application-build
-          path: '**/*_net9.0_x64.log'
